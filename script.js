@@ -15,16 +15,58 @@ let t;
 let paused = false;
 let started = false;
 
+let foodMessage = "";
+let messageTimer = 0;
+
 
 // =========================
 // OFFICE FOOD
 // =========================
 
 const foods = [
-    ["☕", 5],
-    ["🍩", 10],
-    ["⌨️", 15],
-    ["📄", 20]
+
+    {
+        emoji: "☕",
+        points: 5,
+        type: "normal",
+        message: "Kape mo diha +5!"
+    },
+
+    {
+        emoji: "🍩",
+        points: 10,
+        type: "normal",
+        message: "Kaon diay kag donut?"
+    },
+
+    {
+        emoji: "⌨️",
+        points: 15,
+        type: "normal",
+        message: "Ctrl+C Ctrl+V champion diay ka?"
+    },
+
+    {
+        emoji: "📄",
+        points: 20,
+        type: "normal",
+        message: "Pag take ug notes ehh!"
+    },
+
+    {
+        emoji: "⚡",
+        points: 30,
+        type: "fast",
+        message: "NA KURENTEHAN ANG BITIN!"
+    },
+
+    {
+        emoji: "🥱",
+        points: 5,
+        type: "slow",
+        message: "DUKAAA YARN!?!?"
+    }
+
 ];
 
 
@@ -44,18 +86,28 @@ document.getElementById("high").textContent = hi;
 function newFood() {
 
     let a = foods[
-        Math.floor(Math.random() * foods.length)
+        Math.floor(
+            Math.random() * foods.length
+        )
     ];
 
     f = {
 
-        x: Math.floor(Math.random() * n),
+        x: Math.floor(
+            Math.random() * n
+        ),
 
-        y: Math.floor(Math.random() * n),
+        y: Math.floor(
+            Math.random() * n
+        ),
 
-        e: a[0],
+        e: a.emoji,
 
-        p: a[1]
+        p: a.points,
+
+        type: a.type,
+
+        message: a.message
 
     };
 
@@ -70,6 +122,9 @@ function reset() {
 
     paused = false;
 
+    foodMessage = "";
+    messageTimer = 0;
+    
     s = [
         {
             x: 10,
@@ -440,13 +495,18 @@ function draw() {
     // DRAW FOOD
     // =====================
 
-    x.font = "18px Arial";
+
+    x.font = "22px Arial";
+
+    x.textAlign = "center";
 
     x.fillText(
         f.e,
-        f.x * g + 1,
-        f.y * g + 17
+        f.x * g + 10,
+        f.y * g + 18
     );
+
+    x.textAlign = "left";
 
 
     // =====================
@@ -554,7 +614,31 @@ function draw() {
 
         score += f.p;
 
+        foodMessage = f.message;
+        messageTimer = 60;
 
+        // =====================
+        // FOOD EFFECTS
+        // =====================
+
+    if (f.type === "fast") {
+
+        spd = Math.max(
+            30,
+            spd - 15
+        );
+
+    }
+
+    if (f.type === "slow") {
+
+        spd = Math.min(
+            180,
+            spd + 15
+        );
+
+    }
+        
         // ===================
         // UPDATE HIGH SCORE
         // ===================
@@ -599,14 +683,34 @@ function draw() {
 
     } else {
 
+    s.pop();
 
-        // ===================
-        // REMOVE TAIL
-        // ===================
+}
 
-        s.pop();
 
-    }
+// =====================
+// FOOD MESSAGE
+// =====================
+
+if (messageTimer > 0) {
+
+    x.textAlign = "center";
+
+    x.font = "20px Arial";
+
+    x.fillStyle = "white";
+
+    x.fillText(
+        foodMessage,
+        250,
+        40
+    );
+
+    x.textAlign = "left";
+
+    messageTimer--;
+
+}
 
 }
 
