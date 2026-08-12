@@ -18,6 +18,17 @@ let started = false;
 let foodMessage = "";
 let messageTimer = 0;
 
+// =========================
+// BOSS
+// =========================
+
+let boss = null;
+let bossTimer = 0;
+let bossDirection = {
+    x: 1,
+    y: 0
+};
+
 
 // =========================
 // OFFICE FOOD
@@ -113,6 +124,71 @@ function newFood() {
 
 }
 
+// =========================
+// CREATE BOSS
+// =========================
+
+function newBoss() {
+
+    let validPosition = false;
+
+
+    while (!validPosition) {
+
+        boss = {
+
+            x: Math.floor(Math.random() * n),
+
+            y: Math.floor(Math.random() * n)
+
+        };
+
+
+        // Make sure Boss doesn't spawn
+        // directly on the snake
+
+        validPosition = !s.some(
+
+            p =>
+                p.x === boss.x &&
+                p.y === boss.y
+
+        );
+
+
+        // Also avoid the food
+
+        if (
+
+            validPosition &&
+
+            f &&
+
+            boss.x === f.x &&
+
+            boss.y === f.y
+
+        ) {
+
+            validPosition = false;
+
+        }
+
+    }
+
+
+    bossTimer = 0;
+
+    bossDirection = {
+
+        x: Math.random() < 0.5 ? 1 : -1,
+
+        y: 0
+
+    };
+
+}
+
 
 // =========================
 // RESET / RESTART GAME
@@ -142,6 +218,9 @@ function reset() {
     spd = 120;
 
     newFood();
+
+    boss = null;
+    bossTimer = 0;
 
 }
 
@@ -476,6 +555,89 @@ function draw() {
 
     }
 
+    // =====================
+    // MOVE BOSS
+    // =====================
+
+    if (boss !== null) {
+
+        bossTimer++;
+
+        if (bossTimer >= 8) {
+
+            bossTimer = 0;
+
+
+            // Sometimes change direction
+
+            if (Math.random() < 0.35) {
+
+                const directions = [
+
+                    { x: 1, y: 0 },
+
+                    { x: -1, y: 0 },
+
+                    { x: 0, y: 1 },
+
+                    { x: 0, y: -1 }
+
+                ];
+
+                bossDirection =
+                    directions[
+                        Math.floor(
+                            Math.random() *
+                            directions.length
+                        )
+                    ];
+
+            }
+
+
+            boss.x += bossDirection.x;
+
+            boss.y += bossDirection.y;
+
+
+            // Keep Boss inside the board
+
+            if (boss.x < 0) {
+
+                boss.x = 0;
+
+                bossDirection.x = 1;
+
+            }
+
+            if (boss.x >= n) {
+
+                boss.x = n - 1;
+
+                bossDirection.x = -1;
+
+            }
+
+            if (boss.y < 0) {
+
+                boss.y = 0;
+
+                bossDirection.y = 1;
+
+            }
+
+            if (boss.y >= n) {
+
+                boss.y = n - 1;
+
+                bossDirection.y = -1;
+
+            }
+
+        }
+
+    }
+
 
     // =====================
     // CLEAR GAME BOARD
@@ -507,6 +669,26 @@ function draw() {
     );
 
     x.textAlign = "left";
+
+    // =====================
+    // DRAW BOSS
+    // =====================
+
+    if (boss !== null) {
+
+        x.font = "22px Arial";
+
+        x.textAlign = "center";
+
+        x.fillText(
+            "👔",
+            boss.x * g + 10,
+            boss.y * g + 18
+        );
+
+        x.textAlign = "left";
+
+    }
 
 
     // =====================
@@ -544,6 +726,47 @@ function draw() {
 
     };
 
+    // =====================
+    // BOSS COLLISION
+    // =====================
+
+    if (
+
+        boss !== null &&
+
+        h.x === boss.x &&
+
+        h.y === boss.y
+
+    ) {
+
+        clearInterval(t);
+
+        x.fillStyle = "red";
+
+        x.font = "30px Arial";
+
+        x.textAlign = "center";
+
+        x.fillText(
+            "THE BOSS CAUGHT YOU!",
+            250,
+            230
+        );
+
+        x.font = "20px Arial";
+
+        x.fillText(
+            "💀 BACK TO WORK!",
+            250,
+            270
+        );
+
+        x.textAlign = "left";
+
+        return;
+
+    }
 
     // =====================
     // WALL / BODY COLLISION
@@ -616,6 +839,20 @@ function draw() {
 
         foodMessage = f.message;
         messageTimer = 60;
+
+        // =====================
+        // SPAWN BOSS
+        // =====================
+
+    if (score >= 50 && boss === null) {
+
+        newBoss();
+
+        foodMessage = "👔 THE BOSS IS WATCHING!";
+
+        messageTimer = 120;
+
+    }
 
         // =====================
         // FOOD EFFECTS
@@ -713,6 +950,28 @@ if (messageTimer > 0) {
 }
 
 }
+
+    // =====================
+    // BOSS WARNING
+    // =====================
+
+    if (boss !== null) {
+
+        x.textAlign = "center";
+
+        x.font = "14px Arial";
+
+        x.fillStyle = "#ff5555";
+
+        x.fillText(
+            "👔 BOSS IS WATCHING!",
+            250,
+            475
+        );
+
+        x.textAlign = "left";
+
+    }
 
 
 // =========================
