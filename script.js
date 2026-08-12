@@ -13,6 +13,7 @@ let spd = 120;
 let t;
 
 let paused = false;
+let started = false;
 
 
 // =========================
@@ -87,10 +88,6 @@ function reset() {
 
     newFood();
 
-    clearInterval(t);
-
-    t = setInterval(draw, spd);
-
 }
 
 
@@ -120,11 +117,27 @@ onkeydown = e => {
 
     if (e.key === "Enter") {
 
-        paused = !paused;
+    // START GAME
+    if (!started) {
+
+        started = true;
+
+        reset();
+
+        clearInterval(t);
+
+        t = setInterval(draw, spd);
 
         return;
 
     }
+
+    // PAUSE / RESUME
+    paused = !paused;
+
+    return;
+
+}
 
 
     // =====================
@@ -133,11 +146,19 @@ onkeydown = e => {
 
     if (e.code === "Space") {
 
+    if (started) {
+
         reset();
 
-        return;
+        clearInterval(t);
+
+        t = setInterval(draw, spd);
 
     }
+
+    return;
+
+}
 
 
     // =====================
@@ -247,6 +268,111 @@ function hit(h) {
 
 function draw() {
 
+
+    // =====================
+    // START SCREEN
+    // =====================
+
+    if (!started) {
+
+        x.fillStyle = "#111";
+
+        x.fillRect(
+            0,
+            0,
+            500,
+            500
+        );
+
+        x.textAlign = "center";
+
+
+        // TITLE
+
+        x.fillStyle = "#4caf50";
+
+        x.font = "42px Arial";
+
+        x.fillText(
+            "🐍 OFFICE SNAKE",
+            250,
+            140
+        );
+
+
+        // HIGH SCORE
+
+        x.fillStyle = "white";
+
+        x.font = "22px Arial";
+
+        x.fillText(
+            "🏆 High Score: " + hi,
+            250,
+            200
+        );
+
+
+        // DESCRIPTION
+
+        x.font = "17px Arial";
+
+        x.fillText(
+            "Eat office stuff.",
+            250,
+            245
+        );
+
+        x.fillText(
+            "Avoid yourself.",
+            250,
+            270
+        );
+
+        x.fillText(
+            "Don't get caught slacking!",
+            250,
+            295
+        );
+
+
+        // START MESSAGE
+
+        x.fillStyle = "#8bc34a";
+
+        x.font = "22px Arial";
+
+        x.fillText(
+            "▶ PRESS ENTER TO START",
+            250,
+            365
+        );
+
+
+        // CONTROLS
+
+        x.fillStyle = "#aaa";
+
+        x.font = "15px Arial";
+
+        x.fillText(
+            "WASD / Arrow Keys to move",
+            250,
+            410
+        );
+
+        x.fillText(
+            "ENTER = Pause",
+            250,
+            435
+        );
+
+
+        x.textAlign = "left";
+
+        return;
+
+    }
 
     // =====================
     // PAUSED SCREEN
@@ -489,4 +615,8 @@ function draw() {
 // START GAME
 // =========================
 
+started = false;
+
 reset();
+
+draw();
