@@ -40,7 +40,7 @@ const foods = [
         emoji: "☕",
         points: 5,
         type: "normal",
-        message: "Kape mo diha +5!"
+        message: "Kape mo diha 5 ra!"
     },
 
     {
@@ -54,14 +54,14 @@ const foods = [
         emoji: "⌨️",
         points: 15,
         type: "normal",
-        message: "Ctrl+C Ctrl+V champion diay ka?"
+        message: "Imung bluetooth keyboard na disconnect"
     },
 
     {
         emoji: "📄",
         points: 20,
         type: "normal",
-        message: "Pag take ug notes ehh!"
+        message: "Basin OVERBREAK naka"
     },
 
     {
