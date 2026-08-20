@@ -1277,7 +1277,7 @@ s.forEach(
         x.textAlign = "center";
 
         x.fillText(
-            "OM DREW, CAUGHT YOU!",
+            "TM DIVINE, CAUGHT YOU!",
             250,
             230
         );
@@ -1376,7 +1376,7 @@ s.forEach(
 
         newBoss();
 
-        foodMessage = "OM DREW IS WATCHING!";
+        foodMessage = "TM DIVINE IS WATCHING!";
 
         messageTimer = 120;
 
