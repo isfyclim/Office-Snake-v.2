@@ -681,7 +681,7 @@ function draw() {
         x.textAlign = "center";
 
         x.fillText(
-            "👔",
+            "👩🏻‍💼",
             boss.x * g + 10,
             boss.y * g + 18
         );
@@ -1285,7 +1285,7 @@ s.forEach(
         x.font = "20px Arial";
 
         x.fillText(
-            "💀 BACK TO WORK!",
+            "💀 BACK TO CALLS!",
             250,
             270
         );
@@ -1492,7 +1492,7 @@ if (messageTimer > 0) {
         x.fillStyle = "#ff5555";
 
         x.fillText(
-            "👔 BOSS IS WATCHING!",
+            "👩🏻‍💼 BOSS IS WATCHING!",
             250,
             475
         );
