@@ -701,6 +701,7 @@ s.forEach(
         const px = p.x * g;
         const py = p.y * g;
 
+
         // =====================
         // SNAKE BODY
         // =====================
@@ -724,12 +725,82 @@ s.forEach(
 
 
         // =====================
+        // BODY SHADOW
+        // =====================
+
+        if (i !== 0) {
+
+            x.fillStyle = "#689f38";
+
+            x.beginPath();
+
+            x.roundRect(
+                px + 3,
+                py + 12,
+                14,
+                5,
+                3
+            );
+
+            x.fill();
+
+        }
+
+
+        // =====================
+        // BODY HIGHLIGHT
+        // =====================
+
+        if (i !== 0) {
+
+            x.fillStyle = "#aed581";
+
+            x.beginPath();
+
+            x.roundRect(
+                px + 4,
+                py + 3,
+                10,
+                4,
+                2
+            );
+
+            x.fill();
+
+        }
+
+
+        // =====================
+        // BODY PATTERN
+        // =====================
+
+        if (i !== 0 && i % 2 === 0) {
+
+            x.fillStyle = "#7cb342";
+
+            x.beginPath();
+
+            x.arc(
+                px + 10,
+                py + 10,
+                2,
+                0,
+                Math.PI * 2
+            );
+
+            x.fill();
+
+        }
+
+
+        // =====================
         // SNAKE HEAD
         // =====================
 
         if (i === 0) {
 
             // Head outline
+
             x.strokeStyle = "#2e7d32";
             x.lineWidth = 2;
 
@@ -742,13 +813,13 @@ s.forEach(
 
             x.fillStyle = "white";
 
-            // Eyes change position depending
-            // on the snake's direction
+
+            // Moving RIGHT
 
             if (dx === 1) {
 
-                // Moving right
                 x.beginPath();
+
                 x.arc(
                     px + 14,
                     py + 6,
@@ -756,9 +827,12 @@ s.forEach(
                     0,
                     Math.PI * 2
                 );
+
                 x.fill();
 
+
                 x.beginPath();
+
                 x.arc(
                     px + 14,
                     py + 14,
@@ -766,14 +840,18 @@ s.forEach(
                     0,
                     Math.PI * 2
                 );
+
                 x.fill();
 
             }
+
+
+            // Moving LEFT
 
             else if (dx === -1) {
 
-                // Moving left
                 x.beginPath();
+
                 x.arc(
                     px + 4,
                     py + 6,
@@ -781,9 +859,12 @@ s.forEach(
                     0,
                     Math.PI * 2
                 );
+
                 x.fill();
 
+
                 x.beginPath();
+
                 x.arc(
                     px + 4,
                     py + 14,
@@ -791,14 +872,18 @@ s.forEach(
                     0,
                     Math.PI * 2
                 );
+
                 x.fill();
 
             }
+
+
+            // Moving UP
 
             else if (dy === -1) {
 
-                // Moving up
                 x.beginPath();
+
                 x.arc(
                     px + 6,
                     py + 4,
@@ -806,9 +891,12 @@ s.forEach(
                     0,
                     Math.PI * 2
                 );
+
                 x.fill();
 
+
                 x.beginPath();
+
                 x.arc(
                     px + 14,
                     py + 4,
@@ -816,14 +904,18 @@ s.forEach(
                     0,
                     Math.PI * 2
                 );
+
                 x.fill();
 
             }
 
+
+            // Moving DOWN
+
             else if (dy === 1) {
 
-                // Moving down
                 x.beginPath();
+
                 x.arc(
                     px + 6,
                     py + 14,
@@ -831,9 +923,12 @@ s.forEach(
                     0,
                     Math.PI * 2
                 );
+
                 x.fill();
 
+
                 x.beginPath();
+
                 x.arc(
                     px + 14,
                     py + 14,
@@ -841,6 +936,7 @@ s.forEach(
                     0,
                     Math.PI * 2
                 );
+
                 x.fill();
 
             }
@@ -852,9 +948,13 @@ s.forEach(
 
             x.fillStyle = "#111";
 
+
+            // Moving RIGHT
+
             if (dx === 1) {
 
                 x.beginPath();
+
                 x.arc(
                     px + 15,
                     py + 6,
@@ -862,9 +962,12 @@ s.forEach(
                     0,
                     Math.PI * 2
                 );
+
                 x.fill();
 
+
                 x.beginPath();
+
                 x.arc(
                     px + 15,
                     py + 14,
@@ -872,13 +975,18 @@ s.forEach(
                     0,
                     Math.PI * 2
                 );
+
                 x.fill();
 
             }
+
+
+            // Moving LEFT
 
             else if (dx === -1) {
 
                 x.beginPath();
+
                 x.arc(
                     px + 3,
                     py + 6,
@@ -886,9 +994,12 @@ s.forEach(
                     0,
                     Math.PI * 2
                 );
+
                 x.fill();
 
+
                 x.beginPath();
+
                 x.arc(
                     px + 3,
                     py + 14,
@@ -896,13 +1007,18 @@ s.forEach(
                     0,
                     Math.PI * 2
                 );
+
                 x.fill();
 
             }
+
+
+            // Moving UP
 
             else if (dy === -1) {
 
                 x.beginPath();
+
                 x.arc(
                     px + 6,
                     py + 3,
@@ -910,9 +1026,12 @@ s.forEach(
                     0,
                     Math.PI * 2
                 );
+
                 x.fill();
 
+
                 x.beginPath();
+
                 x.arc(
                     px + 14,
                     py + 3,
@@ -920,13 +1039,18 @@ s.forEach(
                     0,
                     Math.PI * 2
                 );
+
                 x.fill();
 
             }
 
+
+            // Moving DOWN
+
             else if (dy === 1) {
 
                 x.beginPath();
+
                 x.arc(
                     px + 6,
                     py + 15,
@@ -934,9 +1058,12 @@ s.forEach(
                     0,
                     Math.PI * 2
                 );
+
                 x.fill();
 
+
                 x.beginPath();
+
                 x.arc(
                     px + 14,
                     py + 15,
@@ -944,6 +1071,7 @@ s.forEach(
                     0,
                     Math.PI * 2
                 );
+
                 x.fill();
 
             }
