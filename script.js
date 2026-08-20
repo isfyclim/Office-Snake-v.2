@@ -808,6 +808,166 @@ s.forEach(
 
 
             // =====================
+            // TONGUE
+            // =====================
+
+            x.strokeStyle = "#ff5252";
+            x.lineWidth = 1.5;
+
+            x.beginPath();
+
+
+            // Moving RIGHT
+
+            if (dx === 1) {
+
+                x.moveTo(
+                    px + 19,
+                    py + 10
+                );
+
+                x.lineTo(
+                    px + 23,
+                    py + 10
+                );
+
+                x.moveTo(
+                    px + 23,
+                    py + 10
+                );
+
+                x.lineTo(
+                    px + 21,
+                    py + 8
+                );
+
+                x.moveTo(
+                    px + 23,
+                    py + 10
+                );
+
+                x.lineTo(
+                    px + 21,
+                    py + 12
+                );
+
+            }
+
+
+            // Moving LEFT
+
+            else if (dx === -1) {
+
+                x.moveTo(
+                    px + 1,
+                    py + 10
+                );
+
+                x.lineTo(
+                    px - 3,
+                    py + 10
+                );
+
+                x.moveTo(
+                    px - 3,
+                    py + 10
+                );
+
+                x.lineTo(
+                    px - 1,
+                    py + 8
+                );
+
+                x.moveTo(
+                    px - 3,
+                    py + 10
+                );
+
+                x.lineTo(
+                    px - 1,
+                    py + 12
+                );
+
+            }
+
+
+            // Moving UP
+
+            else if (dy === -1) {
+
+                x.moveTo(
+                    px + 10,
+                    py + 1
+                );
+
+                x.lineTo(
+                    px + 10,
+                    py - 3
+                );
+
+                x.moveTo(
+                    px + 10,
+                    py - 3
+                );
+
+                x.lineTo(
+                    px + 8,
+                    py - 1
+                );
+
+                x.moveTo(
+                    px + 10,
+                    py - 3
+                );
+
+                x.lineTo(
+                    px + 12,
+                    py - 1
+                );
+
+            }
+
+
+            // Moving DOWN
+
+            else if (dy === 1) {
+
+                x.moveTo(
+                    px + 10,
+                    py + 19
+                );
+
+                x.lineTo(
+                    px + 10,
+                    py + 23
+                );
+
+                x.moveTo(
+                    px + 10,
+                    py + 23
+                );
+
+                x.lineTo(
+                    px + 8,
+                    py + 21
+                );
+
+                x.moveTo(
+                    px + 10,
+                    py + 23
+                );
+
+                x.lineTo(
+                    px + 12,
+                    py + 21
+                );
+
+            }
+
+            x.stroke();
+
+
+            // =====================
             // EYES
             // =====================
 
