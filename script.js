@@ -1277,7 +1277,7 @@ s.forEach(
         x.textAlign = "center";
 
         x.fillText(
-            "THE BOSS CAUGHT YOU!",
+            "OM DREW, CAUGHT YOU!",
             250,
             230
         );
@@ -1372,11 +1372,11 @@ s.forEach(
         // SPAWN BOSS
         // =====================
 
-    if (score >= 50 && boss === null) {
+    if (score >= 75 && boss === null) {
 
         newBoss();
 
-        foodMessage = "👔 THE BOSS IS WATCHING!";
+        foodMessage = "OM DREW IS WATCHING!";
 
         messageTimer = 120;
 
