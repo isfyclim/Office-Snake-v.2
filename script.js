@@ -691,27 +691,267 @@ function draw() {
     }
 
 
-    // =====================
-    // DRAW SNAKE
-    // =====================
+// =====================
+// DRAW SNAKE
+// =====================
 
-    s.forEach(
-        (p, i) => {
+s.forEach(
+    (p, i) => {
 
-            x.fillStyle =
-                i
-                    ? "#8bc34a"
-                    : "#4caf50";
+        const px = p.x * g;
+        const py = p.y * g;
 
-            x.fillRect(
-                p.x * g,
-                p.y * g,
-                18,
-                18
-            );
+        // =====================
+        // SNAKE BODY
+        // =====================
+
+        x.fillStyle =
+            i === 0
+                ? "#4caf50"
+                : "#8bc34a";
+
+        x.beginPath();
+
+        x.roundRect(
+            px + 1,
+            py + 1,
+            18,
+            18,
+            5
+        );
+
+        x.fill();
+
+
+        // =====================
+        // SNAKE HEAD
+        // =====================
+
+        if (i === 0) {
+
+            // Head outline
+            x.strokeStyle = "#2e7d32";
+            x.lineWidth = 2;
+
+            x.stroke();
+
+
+            // =====================
+            // EYES
+            // =====================
+
+            x.fillStyle = "white";
+
+            // Eyes change position depending
+            // on the snake's direction
+
+            if (dx === 1) {
+
+                // Moving right
+                x.beginPath();
+                x.arc(
+                    px + 14,
+                    py + 6,
+                    2.5,
+                    0,
+                    Math.PI * 2
+                );
+                x.fill();
+
+                x.beginPath();
+                x.arc(
+                    px + 14,
+                    py + 14,
+                    2.5,
+                    0,
+                    Math.PI * 2
+                );
+                x.fill();
+
+            }
+
+            else if (dx === -1) {
+
+                // Moving left
+                x.beginPath();
+                x.arc(
+                    px + 4,
+                    py + 6,
+                    2.5,
+                    0,
+                    Math.PI * 2
+                );
+                x.fill();
+
+                x.beginPath();
+                x.arc(
+                    px + 4,
+                    py + 14,
+                    2.5,
+                    0,
+                    Math.PI * 2
+                );
+                x.fill();
+
+            }
+
+            else if (dy === -1) {
+
+                // Moving up
+                x.beginPath();
+                x.arc(
+                    px + 6,
+                    py + 4,
+                    2.5,
+                    0,
+                    Math.PI * 2
+                );
+                x.fill();
+
+                x.beginPath();
+                x.arc(
+                    px + 14,
+                    py + 4,
+                    2.5,
+                    0,
+                    Math.PI * 2
+                );
+                x.fill();
+
+            }
+
+            else if (dy === 1) {
+
+                // Moving down
+                x.beginPath();
+                x.arc(
+                    px + 6,
+                    py + 14,
+                    2.5,
+                    0,
+                    Math.PI * 2
+                );
+                x.fill();
+
+                x.beginPath();
+                x.arc(
+                    px + 14,
+                    py + 14,
+                    2.5,
+                    0,
+                    Math.PI * 2
+                );
+                x.fill();
+
+            }
+
+
+            // =====================
+            // PUPILS
+            // =====================
+
+            x.fillStyle = "#111";
+
+            if (dx === 1) {
+
+                x.beginPath();
+                x.arc(
+                    px + 15,
+                    py + 6,
+                    1.2,
+                    0,
+                    Math.PI * 2
+                );
+                x.fill();
+
+                x.beginPath();
+                x.arc(
+                    px + 15,
+                    py + 14,
+                    1.2,
+                    0,
+                    Math.PI * 2
+                );
+                x.fill();
+
+            }
+
+            else if (dx === -1) {
+
+                x.beginPath();
+                x.arc(
+                    px + 3,
+                    py + 6,
+                    1.2,
+                    0,
+                    Math.PI * 2
+                );
+                x.fill();
+
+                x.beginPath();
+                x.arc(
+                    px + 3,
+                    py + 14,
+                    1.2,
+                    0,
+                    Math.PI * 2
+                );
+                x.fill();
+
+            }
+
+            else if (dy === -1) {
+
+                x.beginPath();
+                x.arc(
+                    px + 6,
+                    py + 3,
+                    1.2,
+                    0,
+                    Math.PI * 2
+                );
+                x.fill();
+
+                x.beginPath();
+                x.arc(
+                    px + 14,
+                    py + 3,
+                    1.2,
+                    0,
+                    Math.PI * 2
+                );
+                x.fill();
+
+            }
+
+            else if (dy === 1) {
+
+                x.beginPath();
+                x.arc(
+                    px + 6,
+                    py + 15,
+                    1.2,
+                    0,
+                    Math.PI * 2
+                );
+                x.fill();
+
+                x.beginPath();
+                x.arc(
+                    px + 14,
+                    py + 15,
+                    1.2,
+                    0,
+                    Math.PI * 2
+                );
+                x.fill();
+
+            }
 
         }
-    );
+
+    }
+);
 
 
     // =====================
